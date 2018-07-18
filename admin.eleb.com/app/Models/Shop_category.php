@@ -8,4 +8,10 @@ class Shop_category extends Model
 {
     //
     protected $fillable=['name','img','status'];
+
+
+//    public function shops()
+//    {
+//        return $this->hasOne(Shop::class,'shop_category_id','id');
+//    }
 }

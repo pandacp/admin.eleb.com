@@ -19,3 +19,4 @@ Route::resource('shop_categories','Shop_categoryController');
 //商家账号
 Route::resource('users','UserController');
 //商家信息
+Route::resource('shops','ShopController');

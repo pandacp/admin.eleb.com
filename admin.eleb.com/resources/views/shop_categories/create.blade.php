@@ -1,6 +1,7 @@
 @extends('default')
 
 @section('contents')
+    @include('_error')
     <div class="container">
         <form class="form-group" action="{{ route('shop_categories.store') }}" method="post" enctype="multipart/form-data">
 

@@ -21,6 +21,16 @@ class Shop_categoryController extends Controller
 
     public function store(Request $request)
     {
+
+        $this->validate($request,[
+            'name'=>'required|max:10',
+            'img'=>'required',
+        ],[
+            'name.required'=>'分类名不能为空',
+            'name.max'=>'分类名不能超过10个字',
+            'img.required'=>'图片不能为空',
+        ]);
+
         $file=$request->img;
         $filename = $file->store('public/img');
         Shop_category::create([
@@ -39,7 +49,12 @@ class Shop_categoryController extends Controller
 
     public function update(Shop_category $shop_category,Request $request)
     {
-
+        $this->validate($request,[
+            'name'=>'required|max:10',
+        ],[
+            'name.required'=>'分类名不能为空',
+            'name.max'=>'分类名不能超过10个字',
+        ]);
         $file = $request->img;
         $data = [
             'name'=>$request->name,

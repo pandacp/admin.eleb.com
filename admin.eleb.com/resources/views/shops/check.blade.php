@@ -2,94 +2,94 @@
 
 @section('contents')
     @include('_error')
-    <div class="container">
-        <form action="" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="exampleInputEmail1">店铺名称</label>
-                <input type="text" name="shop_name" class="form-control" id="exampleInputEmail1" placeholder="" value="{{ $shop->shop_name }}" >
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">店铺图片</label>
-                <input type="file" name="shop_img"  id="exampleInputEmail1" placeholder="" >
-                <img src="{{ \Illuminate\Support\Facades\Storage::url($shop->shop_img) }}" alt="" style="width:200px">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">店铺评分</label>
-                <input type="text" name="shop_rating" class="form-control" id="exampleInputEmail1" placeholder="" value="{{ $shop->shop_rating }}">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">是否品牌</label>
-                是:<input type="radio" name="brand" value="1" @if($shop->brand==1)checked @endif  id="exampleInputEmail1" >
-                否:<input type="radio" name="brand" value="0" @if($shop->brand!=1)checked @endif id="exampleInputEmail2" >
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">是否准时送达</label>
-                是:<input type="radio" name="on_time" value="1" id="exampleInputEmail1" @if($shop->on_time==1)checked @endif>
-                否:<input type="radio" name="on_time" value="0" id="exampleInputEmail2" placeholder="" @if($shop->on_time!=1)checked @endif>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">是否蜂鸟</label>
-                是:<input type="radio" name="fengniao" value="1" id="exampleInputEmail1" @if($shop->fengniao==1)checked @endif>
-                否:<input type="radio" name="fengniao" value="0" id="exampleInputEmail2" placeholder="" @if($shop->fengniao!=1)checked @endif>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">是否保标记</label>
-                是:<input type="radio" name="bao" value="1" id="exampleInputEmail1" @if($shop->bao==1)checked @endif>
-                否:<input type="radio" name="bao" value="0" id="exampleInputEmail2" placeholder="" @if($shop->bao!=1)checked @endif>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">是否票标记</label>
-                是:<input type="radio" name="piao" value="1" id="exampleInputEmail1" @if($shop->piao==1)checked @endif>
-                否:<input type="radio" name="piao" value="0" id="exampleInputEmail2" placeholder="" @if($shop->piao!=1)checked @endif>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">是否准标记</label>
-                是:<input type="radio" name="zhun" value="1" id="exampleInputEmail1" @if($shop->zhun==1)checked @endif>
-                否:<input type="radio" name="zhun" value="0" id="exampleInputEmail2" placeholder="" @if($shop->zhun!=1)checked @endif>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">起送金额</label>
-                <input type="text" name="start_send" class="form-control" id="exampleInputEmail1" placeholder="" value="{{ $shop->start_send }}">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">配送费</label>
-                <input type="text" name="send_cost" class="form-control" id="exampleInputEmail1" placeholder="" value="{{ $shop->send_cost }}">
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">店公告</label>
-                <textarea name="notice" id="" cols="30" rows="3"  class="form-control">{{ $shop->notice }}</textarea>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">优惠信息</label>
-                <textarea name="discount" id="" cols="30" rows="3"  class="form-control">{{ $shop->discount }}</textarea>
-            </div>
+    <div class="container" style="width:600px">
+                <table class="table table-bordered">
+                    <tr>
+                        <td>商户名</td>
+                        <td>{{$shop->shop_name}}</td>
+                    </tr>
+                    <tr>
+                        <td>商户图片</td>
+                        <td><img src="{{ \Illuminate\Support\Facades\Storage::url($shop->shop_img) }}" alt="" style="width:200px"></td>
+                    </tr>
+                    <tr>
+                        <td>评分</td>
+                        <td>{{$shop->shop_rating}}</td>
+                    </tr>
+                    <tr>
+                        <td>是否品牌</td>
+                        <td>@if($shop->brand==1)是@else否@endif</td>
+                    </tr>
+                    <tr>
+                        <td>是否准时送达</td>
+                        <td>@if($shop->on_time==1)是@else否@endif</td>
+                    </tr>
+                    <tr>
+                        <td>是否蜂鸟</td>
+                        <td>@if($shop->fengniao==1)是@else否@endif</td>
+                    </tr>
+                    <tr>
+                        <td>是否保标记</td>
+                        <td>@if($shop->bao==1)是@else否@endif</td>
+                    </tr>
+                    <tr>
+                        <td>是否票标记</td>
+                        <td>@if($shop->piao==1)是@else否@endif</td>
+                    </tr>
+                    <tr>
+                        <td>是否准标记</td>
+                        <td>@if($shop->zhun==1)是@else否@endif</td>
+                    </tr>
+                    <tr>
+                        <td>起送金额</td>
+                        <td>{{ $shop->start_send }}</td>
+                    </tr>
+                    <tr>
+                        <td>配送费</td>
+                        <td>{{ $shop->send_cost }}</td>
+                    </tr>
+                    <tr>
+                        <td>店公告</td>
+                        <td>
+                            <textarea name="notice" id="" cols="30" rows="3"  class="form-control">{{ $shop->notice }}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>优惠信息</td>
+                        <td>
+                            <textarea name="notice" id="" cols="30" rows="3"  class="form-control">{{ $shop->discount }}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>店铺分类</td>
+                        <td>
+                            <select name="shop_category_id" id="">
+                                @foreach($shop_categories as $shop_category)
+       <option value="{{ $shop_category->id }}" @if($shop_category->id == $shop->shop_category_id)selected @endif>{{ $shop_category->name }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>审核状态</td>
+                        <td>
+                            <select name="status" id="">
+                                <option value="1" @if($shop->status==1)selected @endif>正常</option>
+                                <option value="0" @if($shop->status==0)selected @endif>待审核</option>
+                                <option value="-1" @if($shop->status==-1)selected @endif>禁用</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center">
+                            <a href="{{ route('shops.check',[$shop]) }}"><button class="btn btn-primary">通过</button></a>
+                            <a href="{{ route('shops.check',[$shop]) }}"><button class="btn btn-primary">待审核</button></a>
+                            <a href="{{ route('shops.checked',[$shop]) }}"><button class="btn btn-danger">禁用</button></a>
+                        </td>
+                    </tr>
 
+                </table>
 
-            <div class="form-group">
-                <label for="exampleInputEmail1">店铺分类</label>
-                <select name="shop_category_id" id="">
-                    @foreach($shop_categories as $shop_category)
-                        <option value="{{ $shop_category->id }}">{{ $shop_category->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">审核状态</label>
-                <select name="status" id="">
-                    <option value="1" selected>正常</option>
-                    <option value="0" >待审核</option>
-                    <option value="-1">禁用</option>
-                </select>
-            </div>
-            {{--<div class="checkbox">--}}
-                {{--<label>--}}
-                    {{--<input type="checkbox" name="rememberToken"> 记住我--}}
-                {{--</label>--}}
-            {{--</div>--}}
-            {{ csrf_field() }}
-            {{ method_field('PATCH') }}
-            <button type="submit" class="btn btn-primary">提交</button>
-        </form>
     </div>
 
     {{--<div class="form-group">--}}

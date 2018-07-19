@@ -17,7 +17,7 @@
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
-                <td>{{ $user->status }}</td>
+                <td>@if($user->status==1)通过@else未通过@endif</td>
                 <td>{{ $user->shop->shop_name }}</td>
                 <td>
                     <a href="{{ route('users.edit',[$user]) }}"><button class="btn btn-primary">修改</button></a>

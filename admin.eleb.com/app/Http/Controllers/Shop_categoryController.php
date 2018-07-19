@@ -4,14 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Shop_category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class Shop_categoryController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth',[
+            'except'=>['index']
+        ]);
+    }
     public function index()
     {
-        $shop_categories = Shop_category::paginate(5);
-        return view('shop_categories/list',compact('shop_categories'));
+        if(Auth::check()){
+            $shop_categories = Shop_category::paginate(5);
+            return view('shop_categories/list',compact('shop_categories'));
+        }
+        return redirect()->route('login')->with('danger','请登录');
     }
 
     public function create()

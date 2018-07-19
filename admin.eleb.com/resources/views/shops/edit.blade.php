@@ -69,7 +69,7 @@
                 <label for="exampleInputEmail1">店铺分类</label>
                 <select name="shop_category_id" id="">
                     @foreach($shop_categories as $shop_category)
-                        <option value="{{ $shop_category->id }}">{{ $shop_category->name }}</option>
+                        <option value="{{ $shop_category->id }}" @if($shop->shop_category_id==$shop_category->id)selected @endif>{{ $shop_category->name }}</option>
                     @endforeach
                 </select>
             </div>

@@ -18,7 +18,7 @@
                 <td><img src="{{ \Illuminate\Support\Facades\Storage::url($shop->shop_img) }}" alt="" style="width:100px"></td>
                 <td>{{ $shop->Shop_category->name }}</td>
                 <td>{{ $shop->rating }}</td>
-                <td>@if($shop->status==1)通过@else不通过@endif</td>
+                <td>@if($shop->status==1)正常@elseif($shop->status==0)待审核@else禁用@endif</td>
                 <td>
                     <a href="{{ route('shops.show',[$shop]) }}"><button class="btn btn-primary">审核</button></a>
                     <a href="{{ route('shops.edit',[$shop]) }}"><button class="btn btn-primary">修改</button></a>

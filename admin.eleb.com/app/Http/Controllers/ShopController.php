@@ -5,21 +5,42 @@ namespace App\Http\Controllers;
 use App\Models\Shop;
 use App\Models\Shop_category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth',[
+            'except'=>['index']
+        ]);
+    }
     //审核
     public function show(Shop $shop)
     {
-        $shop = Shop::find($shop);
-        var_dump($shop->shop_name);die;
+//        var_dump($shop);die;
         $shop_categories = Shop_category::all();
         return view('shops/check',compact('shop_categories','shop'));
     }
+
+    public function check(Shop $shop)
+    {
+//        dd($shop);
+        $shop->update(['status'=>1]);
+        return redirect()->route('shops.index')->with('success','审核通过');
+    }
+    public function checked(Shop $shop)
+    {
+        $shop->update(['status'=>-1]);
+        return redirect()->route('shops.index')->with('success','禁用');
+    }
     public function index()
     {
-        $shops = Shop::paginate(3);
-        return view('shops/index',compact('shops'));
+        if(Auth::check()){
+            $shops = Shop::paginate(3);
+            return view('shops/index',compact('shops'));
+        }
+        return redirect()->route('login')->with('danger','请登录');
     }
 
     public function create()

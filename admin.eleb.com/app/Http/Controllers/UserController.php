@@ -6,18 +6,23 @@ use App\Models\Shop;
 use App\Models\Shop_category;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    //
-//    public function show()
-//    {
-//        return 1;
-//    }
+    public function __construct()
+    {
+        $this->middleware('auth',[
+            'except'=>['index']
+        ]);
+    }
     public function index()
     {
-        $users = User::paginate(5);
-        return view('users/index',compact('users'));
+        if(Auth::check()){
+            $users = User::paginate(5);
+            return view('users/index',compact('users'));
+        }
+        return redirect()->route('login')->with('danger','请登录');
     }
     public function create(){
         $shops = Shop::all();
@@ -73,8 +78,6 @@ class UserController extends Controller
 
         $user->update($data);
 		return redirect()->route('users.index')->with('success','修改成功');
-
-
     }
 
     public function destroy(User $user)

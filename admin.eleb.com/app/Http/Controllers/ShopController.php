@@ -8,7 +8,14 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    //
+    //审核
+    public function show(Shop $shop)
+    {
+        $shop = Shop::find($shop);
+        var_dump($shop->shop_name);die;
+        $shop_categories = Shop_category::all();
+        return view('shops/check',compact('shop_categories','shop'));
+    }
     public function index()
     {
         $shops = Shop::paginate(3);
@@ -24,9 +31,18 @@ class ShopController extends Controller
     public function store(Request $request)
     {
         $file=$request->shop_img;
-//        $this->validate($request,[
-//
-//        ]);
+        $this->validate($request,[
+            'shop_name'=>'required|max:10',
+            'shop_img'=>'required',
+            'start_send'=>'required',
+            'send_cost'=>'required',
+        ],[
+            'shop_name.required'=>'商店名称不能为空',
+            'shop_name.max.required'=>'商店名称不能大于10位',
+            'shop_img.required'=>'商店名称不能大于10位',
+            'start_send.required'=>'起送金额不能为空',
+            'send_cost.required'=>'配送费不能为空',
+        ]);
         $rating = 0;
         $filename = $file->store('public/dp_img');
         Shop::create([
@@ -59,6 +75,17 @@ class ShopController extends Controller
 
     public function update(Shop $shop,Request $request)
     {
+        $this->validate($request,[
+            'shop_name'=>'required|max:10',
+            'start_send'=>'required',
+            'send_cost'=>'required',
+        ],[
+            'shop_name.required'=>'商店名称不能为空',
+            'shop_name.max'=>'商店名称不能大于10位',
+            'start_send'=>'起送金额不能为空',
+            'send_cost'=>'配送费不能为空',
+        ]);
+
         $file=$request->shop_img;
         $rating = $request->shop_rating??0;
         $data = [

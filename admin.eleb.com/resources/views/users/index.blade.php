@@ -18,7 +18,7 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>{{ $user->status }}</td>
-                <td>{{ $user->shop_id }}</td>
+                <td>{{ $user->shop->shop_name }}</td>
                 <td>
                     <a href="{{ route('users.edit',[$user]) }}"><button class="btn btn-primary">修改</button></a>
                     <form action="{{ route('users.destroy',[$user]) }}" method="post">

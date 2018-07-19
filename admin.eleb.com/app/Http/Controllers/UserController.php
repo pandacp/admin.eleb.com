@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Shop;
 use App\Models\Shop_category;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,8 +20,8 @@ class UserController extends Controller
         return view('users/index',compact('users'));
     }
     public function create(){
-        $shop_categories = Shop_category::all();
-        return view('users/create',compact('shop_categories'));
+        $shops = Shop::all();
+        return view('users/create',compact('shops'));
     }
     public function store(Request $request){
         $this->validate($request,[
@@ -48,8 +49,8 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        $shop_categories = Shop_category::all();
-        return view('users/edit',compact('user','shop_categories'));
+        $shops = Shop::all();
+        return view('users/edit',compact('user','shops'));
     }
 
     public function update(User $user,Request $request){
@@ -71,14 +72,13 @@ class UserController extends Controller
         ];
 
         $user->update($data);
-
+		return redirect()->route('users.index')->with('success','修改成功');
 
 
     }
 
     public function destroy(User $user)
     {
-        return 1;
         $user->delete();
         return redirect()->route('users.index')->with('success','删除成功');
     }

@@ -19,8 +19,8 @@
             <div class="form-group">
                 <label for="exampleInputEmail1">所属商家</label>
                 <select name="shop_id" id="">
-                    @foreach($shop_categories as $shop_category)
-                        <option value="{{ $shop_category->id }}">{{ $shop_category->name }}</option>
+                    @foreach($shops as $shop)
+                        <option value="{{ $shop->id }}">{{ $shop->shop_name }}</option>
                     @endforeach
                 </select>
             </div>

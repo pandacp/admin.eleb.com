@@ -18,12 +18,16 @@ Route::get('/', function () {
 Route::resource('shop_categories','Shop_categoryController');
 //商家账号
 Route::resource('users','UserController');
+//重置密码
+Route::get('users/{user}/form','UserController@form')->name('users.form');
+Route::patch('users/{user}reset/reset','UserController@reset')->name('users.reset');
 //商家信息
 Route::resource('shops','ShopController');
 Route::get('shops/{shop}/check','ShopController@check')->name('shops.check');
 Route::get('shops/{shop}/checked','ShopController@checked')->name('shops.checked');
 //admin
 Route::resource('admins','AdminController');
+//重置密码
 Route::get('admins/{admin}/form','AdminController@form')->name('admins.form');
 Route::patch('admins/{admin}reset/reset','AdminController@reset')->name('admins.reset');
 //登录

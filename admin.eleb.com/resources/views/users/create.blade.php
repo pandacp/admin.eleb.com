@@ -26,8 +26,8 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">状态</label>
-                启用:<input type="radio" name="status" value="1" id="exampleInputEmail1" placeholder="">
-                禁用:<input type="radio" name="status" value="0" checked="checked" id="exampleInputEmail2" placeholder="">
+                启用:<input type="radio" name="status" value="1" checked="checked" id="exampleInputEmail1" placeholder="">
+                禁用:<input type="radio" name="status" value="0" id="exampleInputEmail2" placeholder="">
             </div>
             {{--<div class="checkbox">--}}
                 {{--<label>--}}

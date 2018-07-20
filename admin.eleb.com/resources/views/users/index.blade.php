@@ -21,6 +21,7 @@
                 <td>{{ $user->shop->shop_name }}</td>
                 <td>
                     <a href="{{ route('users.edit',[$user]) }}"><button class="btn btn-primary">修改</button></a>
+                    <a href="{{ route('users.form',[$user]) }}"><button class="btn btn-primary">重置密码</button></a>
                     <form action="{{ route('users.destroy',[$user]) }}" method="post">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}

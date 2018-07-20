@@ -45,8 +45,9 @@ class ShopController extends Controller
 
     public function create()
     {
+        $shops = Shop::all();
         $shop_categories = Shop_category::all();
-        return view('shops/create',compact('shop_categories'));
+        return view('shops/create',compact('shop_categories','shops'));
     }
 
     public function store(Request $request)

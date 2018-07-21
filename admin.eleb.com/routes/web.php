@@ -35,5 +35,5 @@ Route::get('login','SessionController@login')->name('login');
 Route::post('login','SessionController@store')->name('login');
 //注销
 Route::delete('logout','SessionController@destroy')->name('logout');
-
-//
+//活动
+Route::resource('activities','ActivityController');

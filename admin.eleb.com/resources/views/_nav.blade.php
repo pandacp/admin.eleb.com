@@ -61,7 +61,7 @@
                     </li>
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><button class="btn btn-warning">个人中心</button><span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><button class="btn btn-warning">{{ Auth::user()->name }}</button><span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             {{--<li><a href="{{ route('admins.form') }}">修改密码</a></li>--}}
                             <li><a href="{{ route('admins.index') }}">管理员列表</a></li>

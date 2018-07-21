@@ -164,6 +164,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
+        Overtrue\LaravelUEditor\UEditorServiceProvider::class,
         /*
          * Package Service Providers...
          */

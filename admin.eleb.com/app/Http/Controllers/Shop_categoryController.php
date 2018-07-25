@@ -41,12 +41,12 @@ class Shop_categoryController extends Controller
             'img.required'=>'图片不能为空',
         ]);
 
-        $file=$request->img;
-        $filename = $file->store('public/img');
+//        $file=$request->img;
+//        $filename = $file->store('public/img');
         Shop_category::create([
             'name'=>$request->name,
             'status'=>$request->status,
-            'img'=>$filename,
+            'img'=>$request->img,
         ]);
         session()->flash('success','添加成功');
         return redirect()->route('shop_categories.index');
@@ -71,8 +71,8 @@ class Shop_categoryController extends Controller
             'status'=>$request->status,
             ];
         if($file){
-            $filename = $file->store('public/img');
-            $data['img']=$filename;
+//            $filename = $file->store('public/img');
+            $data['img']=$request->img;
         }
         $shop_category->update($data);
         session()->flash('success','修改成功');

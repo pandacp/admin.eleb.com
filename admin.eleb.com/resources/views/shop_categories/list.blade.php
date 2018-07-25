@@ -14,7 +14,7 @@
                 <tr>
                     <td>{{ $shop_category->id }}</td>
                     <td>{{ $shop_category->name }}</td>
-                    <td><img src="{{ \Illuminate\Support\Facades\Storage::url($shop_category->img) }}" alt="" style="width:100px"></td>
+                    <td><img src="{{ $shop_category->img}}" alt="" style="width:100px"></td>
                     <td>@if($shop_category->status==1)显示@else隐藏@endif</td>
                     <td>
                         <a href="{{ route('shop_categories.edit',[$shop_category]) }}" >修改</a>

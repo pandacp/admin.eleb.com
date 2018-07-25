@@ -6,6 +6,7 @@ use App\Models\Shop;
 use App\Models\Shop_category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ShopController extends Controller
 {
@@ -37,7 +38,7 @@ class ShopController extends Controller
     public function index()
     {
         if(Auth::check()){
-            $shops = Shop::paginate(3);
+            $shops = Shop::paginate(5);
             return view('shops/index',compact('shops'));
         }
         return redirect()->route('login')->with('danger','请登录');
@@ -66,11 +67,14 @@ class ShopController extends Controller
             'send_cost.required'=>'配送费不能为空',
         ]);
         $rating = 0;
-        $filename = $file->store('public/dp_img');
+        //   http://admin.eleb.com/
+//        Storage::disk('oss');
+
+//        $filename = $file->store('public/dp_img');
         Shop::create([
             'shop_name'=>$request->shop_name,
-            'shop_img'=>$filename,
-            'rating'=>$rating,
+            'shop_img'=>$file,
+            'shop_rating'=>$rating,
             'brand'=>$request->brand,
             'on_time'=>$request->on_time,
             'fengniao'=>$request->fengniao,
@@ -112,7 +116,7 @@ class ShopController extends Controller
         $rating = $request->shop_rating??0;
         $data = [
             'shop_name'=>$request->shop_name,
-            'rating'=>$rating,
+            'shop_rating'=>$rating,
             'brand'=>$request->brand,
             'on_time'=>$request->on_time,
             'fengniao'=>$request->fengniao,
@@ -127,8 +131,8 @@ class ShopController extends Controller
             'status'=>$request->status,
         ];
         if($file){
-            $filename = $file->store('public/dp_img');
-            $data['shop_img'] = $filename;
+//            $filename = $file->store('public/dp_img');
+            $data['shop_img'] = $file;
         }
 
         $shop->update($data);

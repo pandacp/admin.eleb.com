@@ -37,3 +37,12 @@ Route::post('login','SessionController@store')->name('login');
 Route::delete('logout','SessionController@destroy')->name('logout');
 //活动
 Route::resource('activities','ActivityController');
+
+//文件上传
+Route::post('upload',function(){
+    $storage = \Illuminate\Support\Facades\Storage::disk('oss');
+    $filename = $storage->putFile('shop_category',request()->file('file'));
+    return [
+        'filename'=>$storage->url($filename),
+    ];
+})->name('upload');

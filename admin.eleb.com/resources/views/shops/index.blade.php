@@ -15,7 +15,7 @@
             @foreach($shops as $shop)
             <tr>
                 <td>{{ $shop->shop_name }}</td>
-                <td><img src="{{ \Illuminate\Support\Facades\Storage::url($shop->shop_img) }}" alt="" style="width:100px"></td>
+                <td><img src="{{ $shop->shop_img }}" alt="" style="width:100px"></td>
                 <td>{{ $shop->Shop_category->name }}</td>
                 <td>{{ $shop->rating }}</td>
                 <td>@if($shop->status==1)正常@elseif($shop->status==0)待审核@else禁用@endif</td>

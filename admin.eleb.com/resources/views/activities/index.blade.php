@@ -3,28 +3,51 @@
 @section('contents')
     @include('_error')
     <div class="container">
+         <div class="row">
+             <form action="{{ route('activities.index') }}" method="get" class="navbar-form navbar-left">
+                 <div class="form-group">
+                     <input type="hidden" name="k1" value="1">
+                     {{ csrf_field() }}
+                     <button type="submit" class="btn btn-primary">进行中</button>
+                 </div>
+             </form>
+             <form action="{{ route('activities.index') }}" method="get" class="navbar-form navbar-left">
+                 <div class="form-group">
+                     <input type="hidden" name="k2" value="2">
+                     {{ csrf_field() }}
+                     <button type="submit" class="btn btn-info">未开始</button>
+                 </div>
+             </form>
+             <form action="{{ route('activities.index') }}" method="get" class="navbar-form navbar-left">
+                 <div class="form-group">
+                     <input type="hidden" name="k3" value="3">
+                     {{ csrf_field() }}
+                     <button type="submit" class="btn btn-default">已结束</button>
+                 </div>
+             </form>
+         </div>
         <table class="table table-condensed">
             <tr style="background: #9dcbff">
-                <td>账号ID</td>
-                <td>用户名称</td>
-                <td>用户邮箱</td>
-                <td>操作</td>
-                <td>操作</td>
+                <td><span>活动标题</span></td>
+                <td><span>活动内容</span></td>
+                <td><span>开始时间</span></td>
+                <td><span>结束时间</span></td>
+                <td><span>操作</span></td>
             </tr>
-            @foreach($admins as $admin)
+            @foreach($activities as $activity)
             <tr>
-                <td>{{ $admin->id }}</td>
-                <td>{{ $admin->name }}</td>
-                <td>{{ $admin->email }}</td>
+                <td>{{ $activity->title }}</td>
+                <td>{!! $activity->content !!}</td>
+                <td>{{ $activity->start_time }}</td>
+                <td>{{ $activity->end_time }}</td>
                 <td>
                     <div>
-                        <a href="{{ route('admins.create') }}" class="glyphicon glyphicon-plus"></a>
-                        &emsp;<a href="{{ route('admins.edit',[$admin]) }}" class="glyphicon glyphicon-list-alt"></a>
-                        &emsp;&emsp;<a href="{{ route('admins.form',[$admin]) }}">修改密码</a>
+                        <a href="{{ route('activities.create') }}" class="glyphicon glyphicon-plus"></a>
+                        &emsp;<a href="{{ route('activities.edit',[$activity]) }}" class="glyphicon glyphicon-list-alt"></a>
                     </div>
                 </td>
                 <td>
-                    <form action="{{ route('admins.destroy',[$admin]) }}" method="post">
+                    <form action="{{ route('activities.destroy',[$activity]) }}" method="post">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
                         <button class="btn btn-danger">删除</button>
@@ -33,6 +56,6 @@
             </tr>
             @endforeach
         </table>
-    {{ $admins->links() }}
+    {{ $activities->appends(['activities'=>$activities,'k1'=>$k1,'k2'=>$k2,'k3'=>$k3])->links() }}
     </div>
 @stop

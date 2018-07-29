@@ -22,8 +22,6 @@ class AdminController extends Controller
     }
     public function reset(Admin $admin,Request $request)
     {
-//        var_dump($admin);die;
-        $password = bcrypt($request->password);
         $this->validate($request,[
            'oldpassword'=>'required',
            'password'=>'required',
@@ -37,7 +35,7 @@ class AdminController extends Controller
             'captcha.captcha'=>'验证码错误',
         ]);
         $admin->update([
-            'password'=>$password,
+            'password'=>bcrypt($request->password),
         ]);
         return redirect()->route('admins.index')->with('success','修改成功');
     }

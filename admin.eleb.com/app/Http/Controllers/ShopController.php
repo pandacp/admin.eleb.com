@@ -6,6 +6,7 @@ use App\Models\Shop;
 use App\Models\Shop_category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ShopController extends Controller
@@ -35,11 +36,103 @@ class ShopController extends Controller
         $shop->update(['status'=>-1]);
         return redirect()->route('shops.index')->with('success','禁用');
     }
-    public function index()
+    //商家首页
+    public function index(Request $request)
     {
         if(Auth::check()){
-            $shops = Shop::paginate(5);
-            return view('shops/index',compact('shops'));
+            if (!empty($request->year)&&!empty($request->shop)&&!empty($request->menu)) {
+    //select * from (select shop_id,amount,goods_id from order_goods  join menus as m on order_goods.goods_id=m.id) as g left JOIN  shops as s on g.shop_id=s.id where shop_id=1;
+                $year = $request->year . '-1-1 00:00:00';//开始年份
+                $end_year = $request->year . '-12-31 23:59:59';//结束年份
+                //根据传入的菜名找出对应的菜品id
+                $menu = DB::table('menus')->where('goods_name',$request->menu)->first();
+
+                $data = DB::table('order_goods')
+                    ->join('menus','order_goods.goods_id','=','menus.id')
+                    ->select('shop_id','amount','goods_id')->where('goods_id',$menu->id)
+                    ->get();
+                var_dump($data);die;
+
+                $shop = DB::table('shops')->where('shop_name',$request->shop)->first();
+                $count = DB::table('order_goods')->where('shop_id',$shop->id)->whereBetween('created_at', [$year, $end_year])->count();
+                $name="{$request->shop}{$request->year}年订单量";
+                //
+                $menus = DB::table('order_goods')->where('goods_name', 'like', "%{$request->menu}%")->whereBetween('created_at',[$year,$end_year])->get();
+                $amount = 0;
+                foreach ($menus as $menu) {
+                    $amount += $menu->amount;//总销量
+                }
+                $menu = DB::table('order_goods')->where('goods_name', 'like', "%{$request->menu}%")->first();
+                $name = $menu->goods_name;
+
+
+                return view('orders/date', compact('count','name'));
+
+            }
+            //月订单量
+            elseif (!empty($request->month)&&!empty($request->shop)) {
+                $year = date('Y', time());//获取当前时间的年份
+                $month = $year . '-' . $request->month . '-1 00:00:00';//开始月份
+                $end_month = $year . '-' . $request->month . '-31 23:59:59';//结束月份
+                //根据月份查询订单数量
+                //根据输入的名称获取商店id,然后查询订单量
+                $shop = DB::table('shops')->where('shop_name',$request->shop)->first();
+                $count = DB::table('orders')->where('shop_id',$shop->id)->whereBetween('created_at', [$month, $end_month])->count();
+                $name="{$request->shop}{$request->month}月总订单量";
+                return view('orders/date', compact('count','name'));
+            }
+            //日订单量
+            elseif (!empty($request->day)&&!empty($request->shop)&&!empty($request->menu)) {
+                $day = $request->day.' 00:00:00';
+                $end_day = $request->day.' 23:59:59';
+                //根据传入的菜名找出对应的菜品id
+                $shop = DB::table('shops')->where('shop_name',$request->shop)->first();//商店id
+                $menu = DB::table('menus')->where('goods_name',$request->menu)->first();//菜品id
+    //select * from order_goods  join menus as m on order_goods.goods_id=m.id where goods_id=12
+
+//                $menus = DB::table('order_goods')
+//                    ->join('menus','order_goods.goods_id','=','menus.id')
+//                    ->select('shop_id','amount','goods_id')->where('goods_id',$menu->id)
+//                    ->get();
+//$arr = DB::select("select id,sum(parents+1) as total_people from orders where game_id=6 and pay_status=1 and hotel_id=5");
+                $menus = DB::select("select shop_name,goods_name,amount from (select shop_id,amount,goods_id,o.goods_name from order_goods as o join menus as m on o.goods_id=m.id) as g left JOIN  shops as s on g.shop_id=s.id where shop_id='{$shop->id}' and goods_name='{$request->menu}'
+");
+                $amount = 0;
+                foreach ($menus as $menu) {
+                    $amount += $menu->amount;//日总销量
+                }
+                var_dump($amount);
+
+                var_dump($menus);die;
+
+                //->whereBetween('created_at',[$day,$end_day])
+                $amount = 0;
+                foreach ($menus as $menu) {
+                    $amount += $menu->amount;//日总销量
+                }
+                var_dump($amount);
+                die;
+
+
+                //根据输入的名称获取商店id,然后查询订单量
+                $shop = DB::table('shops')->where('shop_name',$request->shop)->first();
+                $count = DB::table('orders')->where('shop_id',$shop->id)->whereBetween('created_at', [$day, $end_day])->count();
+
+                $name="{$request->shop}{$request->day}号总订单";
+                return view('orders/date', compact('count','name'));
+
+            }
+            elseif(!empty($request->shop)){
+                //根据输入的名称获取商店id,然后查询订单量
+                $shop = DB::table('shops')->where('shop_name',$request->shop)->first();
+                $count = DB::table('orders')->where('shop_id',$shop->id)->count();
+                $name="{$request->shop}总订单";
+                return view('orders/date', compact('count','name'));
+
+            }else{
+                $shops = Shop::paginate(5);
+                return view('shops/index',compact('shops'));
+            }
         }
         return redirect()->route('login')->with('danger','请登录');
     }

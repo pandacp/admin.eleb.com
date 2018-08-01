@@ -2,8 +2,6 @@
 
 @section('contents')
     @include('_error')
-    @include('vendor.ueditor.assets')
-
     <div class="container">
         <form action="{{ route('admins.store') }}" method="post">
             <div class="form-group">
@@ -22,16 +20,13 @@
                 <label for="exampleInputEmail1">邮箱</label>
                 <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="邮箱" value="{{ old('email') }}">
             </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">角色</label><br>
+                @foreach($roles as $role)
+                {{ $role->name }}<input type="checkbox" name="role[]">
+                @endforeach
+            </div>
 
-            <!-- 实例化编辑器 -->
-            <script type="text/javascript">
-                var ue = UE.getEditor('container');
-                ue.ready(function() {
-                    ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
-                });
-            </script>
-            <!-- 编辑器容器 -->
-            <script id="container" name="content" type="text/plain"></script>
             {{--<div class="checkbox">--}}
                 {{--<label>--}}
                     {{--<input type="checkbox" name="rememberToken"> 记住我--}}

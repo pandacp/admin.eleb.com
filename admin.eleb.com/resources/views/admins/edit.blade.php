@@ -24,11 +24,12 @@
                 <label for="exampleInputEmail1">邮箱</label>
                 <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="邮箱" value="{{ $admin->email }}">
             </div>
-            {{--<div class="checkbox">--}}
-                {{--<label>--}}
-                    {{--<input type="checkbox" name="rememberToken"> 记住我--}}
-                {{--</label>--}}
-            {{--</div>--}}
+            <div class="form-group">
+                <label for="exampleInputEmail1">角色</label><br>
+                @foreach($roles as $role)
+                    {{ $role->name }}<input type="checkbox" name="role[]" value="{{ $role->name }}" @if($admin->hasRole($role->name)) checked @endif>
+                @endforeach
+            </div>
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <button type="submit" class="btn btn-primary">修改</button>

@@ -13,4 +13,6 @@ class Shop extends Model
     {
         return $this->hasOne(Shop_category::class,'id','shop_category_id');
     }
+
+
 }

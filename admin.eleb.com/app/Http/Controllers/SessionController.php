@@ -29,7 +29,7 @@ class SessionController extends Controller
             'name'=>$request->name,
             'password'=>$request->password,
         ],$request->rememberToken)){
-            return redirect()->route('admins.index')->with('success','登录成功');
+            return redirect()->route('activities.index')->with('success','登录成功');
         }else{
             return back()->with('danger','用户名或密码错误');
         }

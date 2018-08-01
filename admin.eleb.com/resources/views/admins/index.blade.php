@@ -2,6 +2,7 @@
 
 @section('contents')
     @include('_error')
+    @role('超级管理员')
     <div class="container">
         <table class="table table-condensed">
             <tr style="background: #9dcbff">
@@ -35,4 +36,11 @@
         </table>
     {{ $admins->links() }}
     </div>
+    @else
+    <div class="container">
+        <p style="text-align: center">
+            你不是超级管理员,无权访问
+        </p>
+    </div>
+    @endrole
 @stop

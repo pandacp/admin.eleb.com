@@ -37,6 +37,13 @@ Route::post('login','SessionController@store')->name('login');
 Route::delete('logout','SessionController@destroy')->name('logout');
 //活动
 Route::resource('activities','ActivityController');
+//订单销量
+Route::resource('orders','OrderController');
+//权限管理
+Route::resource('permissions','PermissionController');
+//角色管理
+Route::resource('roles','RoleController');
+
 
 //文件上传
 Route::post('upload',function(){

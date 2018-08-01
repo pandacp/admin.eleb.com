@@ -68,8 +68,8 @@
       <file leaf-file-name="RoleController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/admin.eleb.com/app/Http/Controllers/RoleController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="78" column="72" lean-forward="true" selection-start-line="78" selection-start-column="72" selection-end-line="78" selection-end-column="72" />
+            <state relative-caret-position="703">
+              <caret line="43" column="5" lean-forward="false" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
               <folding>
                 <element signature="e#92#120#0#PHP" expanded="true" />
               </folding>
@@ -164,8 +164,8 @@
         <option value="$PROJECT_DIR$/admin.eleb.com/resources/views/orders/index.blade.php" />
         <option value="$PROJECT_DIR$/admin.eleb.com/app/Http/Controllers/ShopController.php" />
         <option value="$PROJECT_DIR$/admin.eleb.com/app/Models/Permission.php" />
-        <option value="$PROJECT_DIR$/admin.eleb.com/app/Http/Controllers/RoleController.php" />
         <option value="$PROJECT_DIR$/admin.eleb.com/resources/views/roles/edit.blade.php" />
+        <option value="$PROJECT_DIR$/admin.eleb.com/app/Http/Controllers/RoleController.php" />
       </list>
     </option>
   </component>
@@ -670,12 +670,12 @@
       <workItem from="1533042580018" duration="11483000" />
       <workItem from="1533054296703" duration="4916000" />
       <workItem from="1533059557071" duration="703000" />
-      <workItem from="1533083930781" duration="4262000" />
+      <workItem from="1533083930781" duration="4518000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="148013000" />
+    <option name="totallyTimeSpent" value="148269000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1120,8 +1120,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/admin.eleb.com/app/Http/Controllers/RoleController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="78" column="72" lean-forward="true" selection-start-line="78" selection-start-column="72" selection-end-line="78" selection-end-column="72" />
+        <state relative-caret-position="703">
+          <caret line="43" column="5" lean-forward="false" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
           <folding>
             <element signature="e#92#120#0#PHP" expanded="true" />
           </folding>

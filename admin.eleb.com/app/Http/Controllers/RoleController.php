@@ -42,10 +42,7 @@ class RoleController extends Controller
     }
     public function edit(Role $role)
     {
-
-//        $s = DB::table('role_has_permissions')->where('role_id',$role->id)->get();
         $permissions = \Spatie\Permission\Models\Permission::all();
-//        $permissions = Permission::where('name',$role->name)->first();//所有的权限
         return view('roles/edit',compact('permissions','role'));
     }
 

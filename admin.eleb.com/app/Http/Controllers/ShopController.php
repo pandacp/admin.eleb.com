@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Shop;
 use App\Models\Shop_category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class ShopController extends Controller
@@ -27,8 +29,23 @@ class ShopController extends Controller
 
     public function check(Shop $shop)
     {
-//        dd($shop);
+        $user = User::where('shop_id',$shop->id)->first();
+        $email = $user->email;
+        $_SERVER['email']=$email;
+
         $shop->update(['status'=>1]);
+        //审核通过发送邮件
+        $rs = Mail::raw('您的信息通过审核,欢迎加入我们的团队',function($message){
+            $email = $_SERVER['email'];
+            $message->subject('商城审核');
+            $message->to(["{$email}"]);
+            $message->from('13658010910@163.com','13658010910');
+
+        });
+        if(!empty($rs)){
+            return back()->with('danger','邮箱发送失败');
+        }
+
         return redirect()->route('shops.index')->with('success','审核通过');
     }
     public function checked(Shop $shop)

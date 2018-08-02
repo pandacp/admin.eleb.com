@@ -1,6 +1,6 @@
 <div class="container">
     <nav class="navbar navbar-default">
-        <div class="container-fluid">
+        <div class="container-fluid" style="background-color: #9dcbff">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -15,44 +15,39 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
+                {{--<form class="navbar-form navbar-left">--}}
+                    {{--<div class="form-group">--}}
+                        {{--<input type="text" class="form-control" placeholder="Search">--}}
+                    {{--</div>--}}
+                    {{--<button type="submit" class="btn btn-default">Submit</button>--}}
+                {{--</form>--}}
 
-                <form class="navbar-form navbar-left">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
                 @auth
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ route('orders.index') }}" >订单列表</a></li>
-                    <li><a href="{{ route('activities.index') }}">活动列表</a></li>
-                    @role('分类管理员')
+                    <?php
+//                    $childs = \App\Models\Cd::where('pid',1)->where('id','<>',1)->get();
+//                    foreach($childs as $child){
+//                        var_dump($child);
+//                        foreach(\App\Models\Cd::where('pid',$child->id)->get() as $v){
+////                            var_dump($v);
+//                        }
+//                    }
+                    ?>
+                    {{--{!! \App\Models\Cd::getChildHtml() !!}--}}
+
+                    {{--@role('用户管理员')--}}
+                    @foreach(\App\Models\Cd::where('pid',1)->where('id','<>',1)->get() as $child)
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><button class="btn btn-primary">分类管理</button><span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><button class="btn btn-primary">{{ $child->name }}</button><span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ route('shop_categories.index') }}">分类列表</a></li>
-                            <li><a href="{{ route('shop_categories.create') }}">添加分类</a></li>
+                            @foreach(\App\Models\Cd::where('pid',$child->id)->get() as $v)
+                                <li><a href="{{ route($v->url) }}">{{ $v->name }}</a></li>
+                            @endforeach
+                            {{--<li><a href="{{ route('users.create') }}">添加用户</a></li>--}}
                         </ul>
                     </li>
-                    @endrole
-                    @role('商家管理员')
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><button class="btn btn-primary">商户管理</button><span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('shops.index') }}">商户列表</a></li>
-                            <li><a href="{{ route('shops.create') }}">添加商户</a></li>
-                        </ul>
-                    </li>
-                    @endrole
-                    @role('用户管理员')
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><button class="btn btn-primary">用户管理</button><span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('users.index') }}">用户列表</a></li>
-                            <li><a href="{{ route('users.create') }}">添加用户</a></li>
-                        </ul>
-                    </li>
-                    @endrole
+                    @endforeach
+                    {{--@endrole--}}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><button class="btn btn-warning">{{ Auth::user()->name }}</button><span class="caret"></span></a>
                         <ul class="dropdown-menu">

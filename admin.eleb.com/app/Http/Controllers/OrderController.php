@@ -61,7 +61,7 @@ class OrderController extends Controller
                 return view('orders/date', compact('count','name'));
             }
             else {
-                $orders = Order::all();
+                $orders = Order::paginate(10);
                 return view('orders/index',compact('orders'));
             }
         }

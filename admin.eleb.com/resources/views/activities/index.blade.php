@@ -33,6 +33,7 @@
                 <td><span>开始时间</span></td>
                 <td><span>结束时间</span></td>
                 <td><span>操作</span></td>
+                <td><span>操作</span></td>
             </tr>
             @foreach($activities as $activity)
             <tr>

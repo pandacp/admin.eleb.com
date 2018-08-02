@@ -57,6 +57,7 @@
             </tr>
             <?php endforeach;?>
         </table>
+        {{ $orders->links() }}
     </div>
 
 

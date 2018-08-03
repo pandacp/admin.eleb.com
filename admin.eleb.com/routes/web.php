@@ -14,10 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
-//商家分类
-Route::group(['middleware'=>['role:分类管理员']],function(){
-
-});
+//模板
+//Route::group(['middleware'=>['role:分类管理员']],function(){
+//
+//});
 Route::group(['middleware'=>['role:分类管理员']],function(){
     //商家分类
     Route::resource('shop_categories','Shop_categoryController');
@@ -63,15 +63,18 @@ Route::group(['middleware'=>['role:超级管理员']],function(){
     Route::resource('cds','CdController');
 });
 
-//抽奖活动管理
-Route::resource('events','EventController');
+Route::group(['middleware'=>['role:活动管理员']],function(){
+    //抽奖活动管理
+        Route::resource('events','EventController');
+    //活动奖品管理
+        Route::resource('event_prizes','Event_prizeController');
+});
+
 //抽奖
-//Route::patch('/lotteries/{lottery}','EventController@lottery')->name('lotteries.lottery');
 //Route::resource('lotteries','LotteryController');
 //抽奖人数信息
 Route::get('sign_ups','EventController@sign_up')->name('sign_up');
-//活动奖品管理
-Route::resource('event_prizes','Event_prizeController');
+
 
 
 //文件上传

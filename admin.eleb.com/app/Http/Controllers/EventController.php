@@ -65,6 +65,11 @@ class EventController extends Controller
 
     public function edit(Event $event)
     {
+        //活动开启之后不能修改活动
+//        if($event->signup_start<time()){
+//            return back()->with('danger','活动已开启不能修改内容');
+//        }
+
         return view('events/edit',compact('event'));
     }
 
@@ -114,7 +119,9 @@ class EventController extends Controller
     public function show(Event $event)
     {
 
-//        var_dump($event);
+        if($event->is_prize==1){
+            return back()->with('danger','不能重复开奖');
+        }
         //根据报名人数随机抽取活动奖品,将活动奖品和报名的账号随机匹配
         $prizes = Event_prize::where('events_id',$event->id)->get();//该活动所有的奖品
         $count = Event_prize::where('events_id',$event->id)->count();
@@ -138,15 +145,14 @@ class EventController extends Controller
             $prize->update([
                 'member_id'=>$v,
             ]);
-
-            echo "奖品为{$k}:中奖人{$v},<br>";
+//            echo "奖品为{$k}:中奖人{$v},<br>";
         }
-//        die;
+        //修改活动状态
         $event->update([
             'is_prize'=>1,
         ]);
 
-//     return view('events/show',compact('event'));
+     return redirect()->route('events.index')->with('success','抽奖完成');
     }
     //查询所有的报名信息
     public function sign_up()
@@ -157,9 +163,5 @@ class EventController extends Controller
     }
     //抽奖
     // 根据报名人数随机抽取活动奖品,将活动奖品和报名的账号随机匹配]
-    public function lottery(Event $event)
-    {
-        Event_member::all();
-        var_dump($event);
-    }
+
 }

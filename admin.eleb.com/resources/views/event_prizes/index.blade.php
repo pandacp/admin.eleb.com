@@ -18,7 +18,8 @@
                 <td>{{ $event_prize->name }}</td>
                 <td>{{ $event_prize->event->title }}</td>
                 <td>{!! $event_prize->description !!}</td>
-                <td>@if($event_prize->member_id==0){{$event_prize->member_id}}@else{{ $event_prize->user->name }}@endif</td>
+                <td>{{ $event_prize->member_id }}</td>
+                {{--<td>@if($event_prize->member_id==0){{$event_prize->member_id}}@else{{ $event_prize->user->name }}@endif</td>--}}
                 <td>
                     <div>
                         {{--<a href="{{ route('event_prizes.show',[$event_prize]) }}" class="glyphicon glyphicon-eye-open"></a>&emsp;--}}

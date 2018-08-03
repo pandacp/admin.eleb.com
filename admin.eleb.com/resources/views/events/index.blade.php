@@ -48,13 +48,13 @@
                 <td>{{ date('Y-m-d H:i:s',$event->signup_start) }}</td>
                 <td>{{ date('Y-m-d H:i:s',$event->signup_end) }}</td>
                 <td>{{ $event->prize_date }}</td>
-                <td>{{ $event->signup_num }}</td>
+                <td>{{ $event->signup_num }}人</td>
                 <td>@if($event->is_prize==0)未开奖 @else已开奖 @endif</td>
                 <td>
                     <div>
-                        <a href="{{ route('events.show',[$event]) }}" class="glyphicon glyphicon-eye-open"></a>&emsp;
+                        <a href="{{ route('events.show',[$event]) }}" class="glyphicon glyphicon-gift"></a>&emsp;
                         <a href="{{ route('events.create') }}" class="glyphicon glyphicon-plus"></a>
-                        &emsp;<a href="{{ route('events.edit',[$event]) }}" class="glyphicon glyphicon-list-alt"></a>
+                        &emsp;<a href="{{ route('events.edit',[$event]) }}"  @if($event->is_prize!=1)  class="glyphicon glyphicon-list-alt" @else class="disabled" @endif></a>
                         {{--&emsp;<a href="{{ route('lotteries.index') }}" class="glyphicon glyphicon-gift"></a>--}}
                     </div>
                 </td>

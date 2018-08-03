@@ -80,7 +80,7 @@ class AdminController extends Controller
             'name'=>$request->name,
             'password'=>bcrypt($request->password),
             'email'=>$request->email,
-            'rememberToken'=>$rememberToken,
+            'remember_token'=>$rememberToken,
         ]);
         $admin = Admin::where('name',$request->name)->first();//1.找到新添加的用户
         $admin->assignRole($request->role);//2.给用户添加角色

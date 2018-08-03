@@ -75,5 +75,6 @@ class RoleController extends Controller
         //根据对象名字,找到角色,删除
         $role = \Spatie\Permission\Models\Role::findByName($role->name);
         $role->delete();
+        return redirect()->route('roles.index')->with('success','角色权限成功');
     }
 }

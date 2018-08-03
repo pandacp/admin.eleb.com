@@ -79,9 +79,9 @@ class Event_prizeController extends Controller
         //根据该奖品中的events_id,查找对应的活动,是否已开奖
         $event = Event::where('id',$event_prize->events_id)->first();
         //活动已开奖,不能修改奖品
-        if($event->is_prize!=0){
-            return back()->with('danger','活动已开奖,不能修改奖品');
-        }
+        if($event->is_prize==0){
+        return back()->with('danger','活动未开奖,不能删除奖品');
+    }
         $event_prize->delete();
         return redirect()->route('event_prizes.index')->with('success','删除成功');
     }

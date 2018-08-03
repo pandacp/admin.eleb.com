@@ -26,7 +26,7 @@ class ShopController extends Controller
         $shop_categories = Shop_category::all();
         return view('shops/check',compact('shop_categories','shop'));
     }
-
+    //审核通过
     public function check(Shop $shop)
     {
         $user = User::where('shop_id',$shop->id)->first();
@@ -48,6 +48,7 @@ class ShopController extends Controller
 
         return redirect()->route('shops.index')->with('success','审核通过');
     }
+    //禁用账号
     public function checked(Shop $shop)
     {
         $shop->update(['status'=>-1]);

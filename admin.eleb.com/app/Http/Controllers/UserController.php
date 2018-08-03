@@ -49,7 +49,7 @@ class UserController extends Controller
             'email'=>$request->email,
             'status'=>$request->status,
             'shop_id'=>$request->shop_id,
-            'rememberToken'=>$rememberToken,
+            'remember_token'=>$rememberToken,
         ]);
         return redirect()->route('users.index')->with('success','添加成功');
     }

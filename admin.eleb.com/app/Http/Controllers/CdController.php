@@ -64,7 +64,8 @@ class CdController extends Controller
     {
         //判断,当前菜单下有子菜单,不能删除
         $rs = Cd::where('pid',$cd->id)->get();
-        if(!empty($rs)){
+//        var_dump($rs);die;
+        if($rs->isNotEmpty()){
             return back()->with('danger','当前菜单下有子菜单,不能删除');
         }
         $cd->delete();

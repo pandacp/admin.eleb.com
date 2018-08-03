@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3dff9ec3-9c43-4fd2-a63c-02e641935089" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin.eleb.com/app/Http/Controllers/AdminController.php" afterPath="$PROJECT_DIR$/admin.eleb.com/app/Http/Controllers/AdminController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/admin.eleb.com/resources/views/admins/create.blade.php" afterPath="$PROJECT_DIR$/admin.eleb.com/resources/views/admins/create.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,14 +48,34 @@
       <file leaf-file-name="AdminController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/admin.eleb.com/app/Http/Controllers/AdminController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-266">
-              <caret line="85" column="54" lean-forward="true" selection-start-line="85" selection-start-column="54" selection-end-line="85" selection-end-column="54" />
+            <state relative-caret-position="178">
+              <caret line="61" column="7" lean-forward="false" selection-start-line="61" selection-start-column="7" selection-end-line="61" selection-end-column="7" />
               <folding>
                 <element signature="e#459#1117#0#PHP" expanded="false" />
                 <element signature="e#1122#1358#0#PHP" expanded="false" />
                 <element signature="e#1364#1503#0#PHP" expanded="false" />
-                <element signature="e#3331#3480#0#PHP" expanded="false" />
+                <element signature="e#3339#3488#0#PHP" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin.eleb.com/resources/views/admins/create.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="23" column="62" lean-forward="true" selection-start-line="23" selection-start-column="62" selection-end-line="23" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin.eleb.com/resources/views/admins/edit.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="407">
+              <caret line="29" column="149" lean-forward="true" selection-start-line="29" selection-start-column="149" selection-end-line="29" selection-end-column="149" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -80,7 +101,6 @@
         <option value="$PROJECT_DIR$/admin.eleb.com/resources/views/permissions/index.blade.php" />
         <option value="$PROJECT_DIR$/admin.eleb.com/app/Http/Controllers/PermissionController.php" />
         <option value="$PROJECT_DIR$/admin.eleb.com/resources/views/roles/create.blade.php" />
-        <option value="$PROJECT_DIR$/admin.eleb.com/resources/views/admins/create.blade.php" />
         <option value="$PROJECT_DIR$/admin.eleb.com/resources/views/admins/edit.blade.php" />
         <option value="$PROJECT_DIR$/admin.eleb.com/app/Http/Controllers/SessionController.php" />
         <option value="$PROJECT_DIR$/admin.eleb.com/app/Models/Permission.php" />
@@ -127,6 +147,7 @@
         <option value="$PROJECT_DIR$/admin.eleb.com/app/Http/Controllers/CdController.php" />
         <option value="$PROJECT_DIR$/admin.eleb.com/app/Http/Controllers/Event_prizeController.php" />
         <option value="$PROJECT_DIR$/admin.eleb.com/app/Http/Controllers/RoleController.php" />
+        <option value="$PROJECT_DIR$/admin.eleb.com/resources/views/admins/create.blade.php" />
         <option value="$PROJECT_DIR$/admin.eleb.com/app/Http/Controllers/AdminController.php" />
       </list>
     </option>
@@ -260,6 +281,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="event_prizes" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin.eleb.com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin.eleb.com" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin.eleb.com" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admins" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -541,12 +588,12 @@
       <workItem from="1533228763465" duration="5000" />
       <workItem from="1533257053102" duration="2050000" />
       <workItem from="1533261419626" duration="690000" />
-      <workItem from="1533262902258" duration="11767000" />
+      <workItem from="1533262902258" duration="12157000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="221341000" />
+    <option name="totallyTimeSpent" value="221731000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -591,20 +638,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/admin.eleb.com/resources/views/admins/create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="925">
-          <caret line="21" column="18" lean-forward="true" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/admin.eleb.com/resources/views/cds/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-118">
-          <caret line="13" column="18" lean-forward="true" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin.eleb.com/config/mail.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -952,14 +985,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/admin.eleb.com/app/Http/Controllers/PermissionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1635">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/admin.eleb.com/app/Http/Controllers/RoleController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="629">
@@ -968,15 +993,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/admin.eleb.com/app/Http/Controllers/PermissionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1635">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin.eleb.com/resources/views/admins/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="29" column="149" lean-forward="true" selection-start-line="29" selection-start-column="149" selection-end-line="29" selection-end-column="149" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin.eleb.com/resources/views/admins/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="23" column="62" lean-forward="true" selection-start-line="23" selection-start-column="62" selection-end-line="23" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/admin.eleb.com/app/Http/Controllers/AdminController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-266">
-          <caret line="85" column="54" lean-forward="true" selection-start-line="85" selection-start-column="54" selection-end-line="85" selection-end-column="54" />
+        <state relative-caret-position="178">
+          <caret line="61" column="7" lean-forward="false" selection-start-line="61" selection-start-column="7" selection-end-line="61" selection-end-column="7" />
           <folding>
             <element signature="e#459#1117#0#PHP" expanded="false" />
             <element signature="e#1122#1358#0#PHP" expanded="false" />
             <element signature="e#1364#1503#0#PHP" expanded="false" />
-            <element signature="e#3331#3480#0#PHP" expanded="false" />
+            <element signature="e#3339#3488#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>

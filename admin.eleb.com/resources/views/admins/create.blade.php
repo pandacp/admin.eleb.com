@@ -23,7 +23,7 @@
             <div class="form-group">
                 <label for="exampleInputEmail1">角色</label><br>
                 @foreach($roles as $role)
-                {{ $role->name }}<input type="checkbox" name="role[]">
+                {{ $role->name }}<input type="checkbox" name="role[]" value="{{ $role->name }}">
                 @endforeach
             </div>
 

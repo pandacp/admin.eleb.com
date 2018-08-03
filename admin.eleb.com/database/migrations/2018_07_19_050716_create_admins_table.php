@@ -18,7 +18,8 @@ class CreateAdminsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('password');
-            $table->string('rememberToken');
+//            $table->string('rememberToken');
+            $table->rememberToken();
             $table->timestamps();
             $table->engine='InnoDB';
         });

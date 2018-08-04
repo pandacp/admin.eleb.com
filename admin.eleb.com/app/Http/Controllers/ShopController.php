@@ -65,11 +65,6 @@ class ShopController extends Controller
                 //根据传入的菜名找出对应的菜品id
                 $menu = DB::table('menus')->where('goods_name',$request->menu)->first();
 
-                $data = DB::table('order_goods')
-                    ->join('menus','order_goods.goods_id','=','menus.id')
-                    ->select('shop_id','amount','goods_id')->where('goods_id',$menu->id)
-                    ->get();
-                var_dump($data);die;
 
                 $shop = DB::table('shops')->where('shop_name',$request->shop)->first();
                 $count = DB::table('order_goods')->where('shop_id',$shop->id)->whereBetween('created_at', [$year, $end_year])->count();
@@ -103,6 +98,7 @@ class ShopController extends Controller
             elseif (!empty($request->day)&&!empty($request->shop)&&!empty($request->menu)) {
                 $day = $request->day.' 00:00:00';
                 $end_day = $request->day.' 23:59:59';
+
                 //根据传入的菜名找出对应的菜品id
                 $shop = DB::table('shops')->where('shop_name',$request->shop)->first();//商店id
                 $menu = DB::table('menus')->where('goods_name',$request->menu)->first();//菜品id
@@ -113,30 +109,21 @@ class ShopController extends Controller
 //                    ->select('shop_id','amount','goods_id')->where('goods_id',$menu->id)
 //                    ->get();
 //$arr = DB::select("select id,sum(parents+1) as total_people from orders where game_id=6 and pay_status=1 and hotel_id=5");
-                $menus = DB::select("select shop_name,goods_name,amount from (select shop_id,amount,goods_id,o.goods_name from order_goods as o join menus as m on o.goods_id=m.id) as g left JOIN  shops as s on g.shop_id=s.id where shop_id='{$shop->id}' and goods_name='{$request->menu}'
+//                $day = strtotime($day);
+//                $end_day = strtotime($end_day);
+//                var_dump($day);
+
+                $menus = DB::select("select shop_name,goods_name,amount from (select shop_id,amount,goods_id,o.goods_name from order_goods as o join menus as m on o.goods_id=m.id) as g left JOIN  shops as s on g.shop_id=s.id where shop_id='{$shop->id}' and goods_name='{$request->menu}' and created_at >='{$day}' and created_at <= '{$end_day}'
 ");
                 $amount = 0;
                 foreach ($menus as $menu) {
                     $amount += $menu->amount;//日总销量
                 }
-                var_dump($amount);
+                $count = $amount;
+//                var_dump($menus);
+//                die;
 
-                var_dump($menus);die;
-
-                //->whereBetween('created_at',[$day,$end_day])
-                $amount = 0;
-                foreach ($menus as $menu) {
-                    $amount += $menu->amount;//日总销量
-                }
-                var_dump($amount);
-                die;
-
-
-                //根据输入的名称获取商店id,然后查询订单量
-                $shop = DB::table('shops')->where('shop_name',$request->shop)->first();
-                $count = DB::table('orders')->where('shop_id',$shop->id)->whereBetween('created_at', [$day, $end_day])->count();
-
-                $name="{$request->shop}{$request->day}号总订单";
+                $name="{$request->shop}{$request->day}号总销量";
                 return view('orders/date', compact('count','name'));
 
             }

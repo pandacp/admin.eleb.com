@@ -59,7 +59,7 @@ class AdminController extends Controller
 
     public function store(Request $request)
     {
-       
+
         if($request->password!=$request->repassword){
             return back()->with('danger','密码不一致');
         };

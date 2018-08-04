@@ -33,20 +33,22 @@
 //                        }
 //                    }
                     ?>
-                    {{--{!! \App\Models\Cd::getChildHtml() !!}--}}
+                    {!! \App\Models\Cd::getChildHtml() !!}
 
                     {{--@role('用户管理员')--}}
-                    @foreach(\App\Models\Cd::where('pid',1)->where('id','<>',1)->get() as $child)
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><button class="btn btn-primary">{{ $child->name }}</button><span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            @foreach(\App\Models\Cd::where('pid',$child->id)->get() as $v)
-                                <li><a href="{{ route($v->url) }}">{{ $v->name }}</a></li>
-                            @endforeach
+
+                    {{--@foreach(\App\Models\Cd::where('pid',1)->where('id','<>',1)->get() as $child)--}}
+                    {{--<li class="dropdown">--}}
+                        {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><button class="btn btn-primary">{{ $child->name }}</button><span class="caret"></span></a>--}}
+                        {{--<ul class="dropdown-menu">--}}
+                            {{--@foreach(\App\Models\Cd::where('pid',$child->id)->get() as $v)--}}
+                                {{--<li><a href="{{ route($v->url) }}">{{ $v->name }}</a></li>--}}
+                            {{--@endforeach--}}
                             {{--<li><a href="{{ route('users.create') }}">添加用户</a></li>--}}
-                        </ul>
-                    </li>
-                    @endforeach
+                        {{--</ul>--}}
+                    {{--</li>--}}
+                    {{--@endforeach--}}
+
                     {{--@endrole--}}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><button class="btn btn-warning">{{ Auth::user()->name }}</button><span class="caret"></span></a>

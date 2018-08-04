@@ -4,16 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Models\Cd;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Permission;
 
 class CdController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth',[
+            'except'=>['index']
+        ]);
+    }
     //菜单管理
     public function index()
     {
-        //查询所有的菜单
-        $cds =  Cd::paginate(10);
-        return view('cds/index',compact('cds'));
+        if(Auth::check()){
+            //查询所有的菜单
+            $cds =  Cd::paginate(10);
+            return view('cds/index',compact('cds'));
+        }
+        return redirect()->route('login')->with('danger','请登录');
     }
 
     public function create()

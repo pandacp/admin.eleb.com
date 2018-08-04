@@ -4,14 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Permission;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PermissionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth',[
+            'except'=>['index']
+        ]);
+    }
     //角色列表
     public function index()
     {
-        $permissions = Permission::paginate();
-        return view('permissions/index',compact('permissions'));
+        if(Auth::check()){
+            $permissions = Permission::paginate();
+            return view('permissions/index',compact('permissions'));
+        }
+        return redirect()->route('login')->with('danger','请登录');
+
     }
 
     public function create()

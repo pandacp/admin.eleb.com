@@ -24,10 +24,9 @@ class Cd extends Model
         foreach(self::where('pid',1)->where('id','<>',1)->get() as $nav){
             $childHtml = '';
             foreach($nav->children as $v){
-                if(Auth::user()->can($nav->permission->name)){
-
+                if(auth()->user()->can($v->permission->name)){
+                    $childHtml.='<li><a href="'.route($v->url).'">'.$v->name.'</a></li>';
                 }
-                $childHtml.='<li><a href="{{ '.route($v->url).' }}">'.$v->name.'</a></li>';
             }
             if(empty($childHtml)) continue;
             $html.= '<li class="dropdown">
@@ -41,4 +40,5 @@ class Cd extends Model
 
         return $html;
     }
+
 }

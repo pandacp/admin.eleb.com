@@ -5,19 +5,27 @@ namespace App\Http\Controllers;
 //use App\Models\Permission;
 //use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth',[
+            'except'=>['index']
+        ]);
+    }
     //
     public function index()
     {
-//        $roles = Role::paginate();
-
-        $roles = Role::paginate();
-        return view('roles/index',compact('roles'));
+        if(Auth::check()){
+            $roles = Role::paginate();
+            return view('roles/index',compact('roles'));
+        }
+        return redirect()->route('login')->with('danger','请登录');
     }
 
     public function create()
@@ -75,6 +83,6 @@ class RoleController extends Controller
         //根据对象名字,找到角色,删除
         $role = \Spatie\Permission\Models\Role::findByName($role->name);
         $role->delete();
-        return redirect()->route('roles.index')->with('success','角色权限成功');
+        return redirect()->route('roles.index')->with('success','删除角色权限成功');
     }
 }

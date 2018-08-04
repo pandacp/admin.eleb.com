@@ -75,8 +75,6 @@ Route::group(['middleware'=>['role:活动管理员']],function(){
 //抽奖人数信息
 Route::get('sign_ups','EventController@sign_up')->name('sign_up');
 
-
-
 //文件上传
 Route::post('upload',function(){
     $storage = \Illuminate\Support\Facades\Storage::disk('oss');

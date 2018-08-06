@@ -36,7 +36,10 @@ class ActivityController extends Controller
             }else{
                 $activities = Activity::paginate(2);
             }
-            return view('activities/index',compact('activities','k1','k2','k3'));
+            //return  view('activities/index',compact('activities','k1','k2','k3'));
+            $content = view('activities/index',compact('activities','k1','k2','k3'));
+            file_put_contents('activity_index.html',$content);
+
         }
         return redirect()->route('login')->with('danger','请登录');
     }

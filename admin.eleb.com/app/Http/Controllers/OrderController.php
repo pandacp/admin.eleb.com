@@ -19,6 +19,7 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         if(Auth::check()){
+
             if (!empty($request->year)&&!empty($request->shop)) {
 
                 $year = $request->year . '-1-1 00:00:00';//开始年份
@@ -67,7 +68,18 @@ class OrderController extends Controller
         }
         return redirect()->route('login')->with('danger','请登录');
     }
+    //自动清理超时未支付订单
+    public function autoClean()
+    {
+        set_time_limit(0);
+        $time = time();
+        while(true){
+            DB::update("update `orders` set status=-1 where created_at<= {date('Y-m-d H:i:s',($time-15*60))} and status=0");
+            //输出的字符串需要编码使用函数  iconv(), mb_convert_encoding();
+            echo iconv('utf-8','gbk','清理订单完成');
+            sleep(1);
+        }
 
-
+    }
 
 }

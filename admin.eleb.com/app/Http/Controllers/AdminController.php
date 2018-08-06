@@ -6,6 +6,7 @@ use App\Models\Admin;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -46,7 +47,6 @@ class AdminController extends Controller
             return redirect()->route('login')->with('danger','请登录');
         }
         $admins = Admin::paginate(5);
-
         return view('admins/index',compact('admins'));
     }
 
